@@ -1,0 +1,542 @@
+PWSH draft
+
+What is a provider?
+What are common parameters?
+What is a host?
+Conditional logic, Looping, Error Handling, Data Structures (Objects, Arrays, Lists)...
+Starting/stopping processes
+Networking Commands
+Functions
+Scopes
+Importing
+Changing the prompt
+Powershell Profiles
+Formatting Output
+Script blocks
+$LASTEXITCODE
+booleans ($true, $false)
+Type casting: [Int32]$someFloat
+about_Splatting
+
+Function        Clear-Host
+Cmdlet          Get-Host                                           7.0.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Out-Host                                           7.0.3.0    Microsoft.PowerShell.Core
+Cmdlet          Read-Host                                          7.0.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Write-Host                                         7.0.0.0    Microsoft.PowerShell.Utility
+
+Get-ChildItem
+
+get-clipboard
+set-clipboard [-append]
+
+write-output
+
+get-command [[-noun <string>] [-verb <string>]]
+
+Get-Help
+   [[-Name] <String>]
+   [-Path <String>]
+   [-Category {Alias | Cmdlet | Provider | General | FAQ | Glossary | HelpFile |
+                ScriptCommand | Function | Filter | ExternalScript | All | 
+                DefaultHelp | Workflow | DscResource | Class | Configuration}]
+   [-{Full | Detailed | Examples}]
+   [-Component <String[]>]
+   [-Functionality <String[]>]
+   [-Role <String[]>]
+   [<CommonParameters>]
+
+get-help -online <topic-command-classs-etc>
+
+Get-Command
+    [-Verb <String[]>]
+    [-Noun <String[]>]
+    [-Module <String[]>]
+    [-FullyQualifiedModule <ModuleSpecification[]>]
+    [-CommandType {
+                     Alias | Function | Filter | Cmdlet | ExternalScript |
+                     Application | Script | Workflow | Configuration | All
+                 }
+    ]
+    [-TotalCount <Int32>]
+    [-Syntax]
+    [-ShowCommandInfo]
+    [[-ArgumentList] <Object[]>]
+    [-All]
+    [-ListImported]
+    [-ParameterName <String[]>]
+    [-ParameterType <PSTypeName[]>]
+    [<CommonParameters>]
+
+get-module
+import-module
+Install-Module
+Uninstall-Modul
+Find-Module
+save-module
+New-Module
+
+Directory Navigation:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Get-Location                                       7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Pop-Location                                       7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Push-Location                                      7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Set-Location                                       7.0.0.0    Microsoft.PowerShell.Management
+Paths:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Convert-Path                                       7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Join-Path                                          7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Resolve-Path                                       7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Split-Path                                         7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Test-Path                                          7.0.0.0    Microsoft.PowerShell.Management
+
+for file/entity create, copy, delete, update, move:
+    Cmdlet          Clear-Item                                         7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Copy-Item                                          7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Get-Item                                           7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Invoke-Item                                        7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Move-Item                                          7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          New-Item                                           7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Remove-Item                                        7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Rename-Item                                        7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Set-Item                                           7.0.0.0    Microsoft.PowerShell.Management
+
+Process commands:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Debug-Process                                      7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Get-Process                                        7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Start-Process                                      7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Stop-Process                                       7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Wait-Process                                       7.0.0.0    Microsoft.PowerShell.Management
+
+Object member:
+    Cmdlet          Add-Member                                         7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Get-Member                                         7.0.0.0    Microsoft.PowerShell.Utility
+
+Objects:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Compare-Object                                     7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          ForEach-Object                                     7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Group-Object                                       7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Measure-Object                                     7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          New-Object                                         7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Select-Object                                      7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Sort-Object                                        7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Tee-Object                                         7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Where-Object                                       7.0.3.0    Microsoft.PowerShell.Core
+
+String manipulation:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Join-String                                        7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Out-String                                         7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Select-String                                      7.0.0.0    Microsoft.PowerShell.Utility
+
+Variables:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Clear-Variable                                     7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Get-Variable                                       7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          New-Variable                                       7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Remove-Variable                                    7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Set-Variable                                       7.0.0.0    Microsoft.PowerShell.Utility
+
+Test commands:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Function        Test-Dtc                                           1.0.0.0    MsDtc
+    Function        Test-HgsClientConfiguration                        1.0.0.0    HgsClient
+    Function        Test-NetConnection                                 1.0.0.0    NetTCPIP
+    Function        Test-ScriptFileInfo                                2.2.4.1    PowerShellGet
+    Function        Test-ScriptFileInfo                                1.0.0.1    PowerShellGet
+    Cmdlet          Test-AppLockerPolicy                               2.0.0.0    AppLocker
+    Cmdlet          Test-Certificate                                   1.0.0.0    PKI
+    Cmdlet          Test-Connection                                    7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Test-DscConfiguration                              1.1        PSDesiredStateConfiguration
+    Cmdlet          Test-FileCatalog                                   7.0.0.0    Microsoft.PowerShell.Security
+    Cmdlet          Test-HgsTraceTarget                                1.0.0.0    HgsDiagnostics
+    Cmdlet          Test-Json                                          7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Test-KdsRootKey                                    1.0.0.0    Kds
+    Cmdlet          Test-ModuleManifest                                7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Test-Path                                          7.0.0.0    Microsoft.PowerShell.Management
+    Cmdlet          Test-PSSessionConfigurationFile                    7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Test-VHD                                           2.0.0.0    Hyper-V
+    Cmdlet          Test-VMNetworkAdapter                              2.0.0.0    Hyper-V
+    Cmdlet          Test-VMReplicationConnection                       2.0.0.0    Hyper-V
+    Cmdlet          Test-WSMan                                         7.0.0.0    Microsoft.WSMan.Management
+
+Net commands:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Function        Find-NetRoute                                      1.0.0.0    NetTCPIP
+    Function        Get-NetCompartment                                 1.0.0.0    NetTCPIP
+    Function        Get-NetIPAddress                                   1.0.0.0    NetTCPIP
+    Function        Get-NetIPConfiguration                             1.0.0.0    NetTCPIP
+    Function        Get-NetIPInterface                                 1.0.0.0    NetTCPIP
+    Function        Get-NetIPv4Protocol                                1.0.0.0    NetTCPIP
+    Function        Get-NetIPv6Protocol                                1.0.0.0    NetTCPIP
+    Function        Get-NetNeighbor                                    1.0.0.0    NetTCPIP
+    Function        Get-NetOffloadGlobalSetting                        1.0.0.0    NetTCPIP
+    Function        Get-NetPrefixPolicy                                1.0.0.0    NetTCPIP
+    Function        Get-NetRoute                                       1.0.0.0    NetTCPIP
+    Function        Get-NetTCPConnection                               1.0.0.0    NetTCPIP
+    Function        Get-NetTCPSetting                                  1.0.0.0    NetTCPIP
+    Function        Get-NetTransportFilter                             1.0.0.0    NetTCPIP
+    Function        Get-NetUDPEndpoint                                 1.0.0.0    NetTCPIP
+    Function        Get-NetUDPSetting                                  1.0.0.0    NetTCPIP
+    Function        New-NetIPAddress                                   1.0.0.0    NetTCPIP
+    Function        New-NetNeighbor                                    1.0.0.0    NetTCPIP
+    Function        New-NetRoute                                       1.0.0.0    NetTCPIP
+    Function        New-NetTransportFilter                             1.0.0.0    NetTCPIP
+    Function        Remove-NetIPAddress                                1.0.0.0    NetTCPIP
+    Function        Remove-NetNeighbor                                 1.0.0.0    NetTCPIP
+    Function        Remove-NetRoute                                    1.0.0.0    NetTCPIP
+    Function        Remove-NetTransportFilter                          1.0.0.0    NetTCPIP
+    Function        Set-NetIPAddress                                   1.0.0.0    NetTCPIP
+    Function        Set-NetIPInterface                                 1.0.0.0    NetTCPIP
+    Function        Set-NetIPv4Protocol                                1.0.0.0    NetTCPIP
+    Function        Set-NetIPv6Protocol                                1.0.0.0    NetTCPIP
+    Function        Set-NetNeighbor                                    1.0.0.0    NetTCPIP
+    Function        Set-NetOffloadGlobalSetting                        1.0.0.0    NetTCPIP
+    Function        Set-NetRoute                                       1.0.0.0    NetTCPIP
+    Function        Set-NetTCPSetting                                  1.0.0.0    NetTCPIP
+    Function        Set-NetUDPSetting                                  1.0.0.0    NetTCPIP
+    Function        Test-NetConnection                                 1.0.0.0    NetTCPIP
+
+Out commands:
+    CommandType     Name                                               Version    Source
+    -----------     ----                                               -------    ------
+    Cmdlet          Out-Default                                        7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Out-File                                           7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Out-GridView                                       7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Out-Host                                           7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Out-Null                                           7.0.3.0    Microsoft.PowerShell.Core
+    Cmdlet          Out-Printer                                        7.0.0.0    Microsoft.PowerShell.Utility
+    Cmdlet          Out-String                                         7.0.0.0    Microsoft.PowerShell.Utility
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Get-Date                                           7.0.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Set-Date                                           7.0.0.0    Microsoft.PowerShell.Utility
+
+The Out-Null command Hides the output instead of sending it down the pipeline or displaying it.
+
+PowerShell commands come in a few flavors: cmdlets, functions,
+aliases, and sometimes external scripts
+
+Remember: OBJECT PROPERTIES AND METHODS ARE REFERRED TO AS MEMBERS
+
+Variables interpolate when inside double quotes, but not in single ones
+
+Data structures in PowerShell are represented by objects stored in
+variables. They come in three main types: arrays, ArrayLists, and hashtables.
+
+To access multiple elements in an array at the same time, you can use the
+range operator (..) between two numbers
+
+You can concatenate objects and arrays to other array(s) using the + operator (
++= is also valid and it works as $someArr = $someArr + $objOrArr)
+
+Arrays have an useful method called '.Where()'. You can use it to filter the array
+
+PowerShell treats any comma-separated set of values as an array, and you don’t explicitly need the @ or parentheses.
+
+--- Arrays => @()
+--- Defining an ArrayList is exactly like defining an array, except that you
+need to cast it as an ArrayList:
+    [System.Collections.ArrayList]@('blue','white','yellow','black')
+--- Hashtables => @{
+    key1 = val1
+    key2 = val2
+    etc...
+}; // PowerShell will add each key to the object’s properties
+---  `New-Object -TypeName PSCustomObject` is same as `[PSCustomObject]@{OSBuild = 'x'; OSVersion = 'y'}`
+    To add additional props to objects created this way use: `add-member -name <String> -value <Object> -membertype <Type>`
+
+Scope Modifiers
+
+A variable, alias, or function name can include any one of the following
+optional scope modifiers:
+
+-   global: - Specifies that the name exists in the GLOBAL scope.
+
+-   local: - Specifies that the name exists in the LOCAL scope. The current
+    scope is always the LOCAL scope.
+
+-   private: - Specifies that the name is PRIVATE and only visible to the
+    current scope.
+
+-   script: - Specifies that the name exists in the SCRIPT scope. SCRIPT
+    scope is the nearest ancestor script file's scope or GLOBAL if there is
+    no nearest ancestor script file.
+
+-   using: - Used to access variables defined in another scope while
+    running scripts via cmdlets like Start-Job and Invoke-Command.
+
+-   workflow: - Specifies that the name exists within a workflow. Note:
+    Workflows are not supported in PowerShell Core.
+
+-   <variable-namespace> - A modifier created by a PowerShell PSDrive
+    provider. For example:
+
+      Namespace   Description
+      ----------- ----------------------------------------------------
+      Alias:      Aliases defined in the current scope
+      Env:        Environment variables defined in the current scope
+      Function:   Functions defined in the current scope
+      Variable:   Variables defined in the current scope
+
+
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+
+You can pipe arrays and they will be passed one by one, so even if the 
+receiving cmdlet doesnt receive arrays types it will work.
+This allows you to execute the same command for every item in the array. 
+
+To see if using the pipeline is even possible, you can look at a command’s full help
+content by using the Full parameter on the Get-Help command
+
+PowerShell matches pipeline input to parameters in two ways. The first
+is via ByValue, which means that PowerShell will look at the type of object
+passed in and interpret it accordingly. Because Get-Service specifies that it
+accepts the Name parameter via ByValue, it will interpret any string passed to
+it as Name unless otherwise specified. Because parameters passed via ByValue
+depend on the type of input, only one parameter can be passed via ByValue
+The second way PowerShell will match a parameter from the pipeline
+is via ByPropertyName. In this case, PowerShell will look at the object passed
+in, and if it has a property with the appropriate name (ComputerName, in this
+case), then it will look at the value for that property and accept that value
+as the parameter.
+
+Spread a command multiple lines use ' `' (space + backtick) instead of \
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Get-ExecutionPolicy                                7.0.0.0    Microsoft.PowerShell.Security
+Cmdlet          Set-ExecutionPolicy                                7.0.0.0    Microsoft.PowerShell.Security
+
+Restricted
+AllSigned
+RemoteSigned
+Restricted
+
+-eq Compares two values and returns True if they are equal.
+-ne Compares two values and returns True if they are not equal.
+-gt Compares two values and returns True if the first is greater than
+the second.
+-ge Compares two values and returns True if the first is greater than or
+equal to the second.
+-lt Compares two values and returns True if the first is less than the
+second.
+-le Compares two values and returns True if the first is less than or
+equal to the second.
+-contains Returns True if the second value is “in” the second. You can
+use this to determine whether a value is inside an array.
+
+if (condition0) {
+    # code to run if the condition evaluates to be True
+} elseif (condition1) {
+    # More code
+} else {
+    # Last resort
+}
+
+switch (expression) {
+    expressionvalue {
+        # Do something with code here.
+        break
+    }
+    expressionvalue {
+        # Something else
+        break
+    }
+    default {
+        # Stuff to do if no matches were found
+    }
+}
+
+foreach ($item in $collectionOfItems) {
+    # Do something with $server
+    # As it moves through the list, PowerShell will copy the object it’s looking
+    # at into the variable. Note that because the variable is just a copy, you cannot
+    # directly change the item in the original list.
+}
+
+ForEach-Object -InputObject $collectionOfItems -Process {
+    # Do something with special variable $_
+}
+
+# The foreach() method is considerably faster than the other two
+$collectionOfItems.foreach({ # Do something with special variable $_ })
+
+for (u$i = 0; v$i -lt 10; w$i++) {
+    # Do something with $i
+}
+
+while (condition) {
+    # Do something
+}
+
+The break keyword can be used in any loop to stop the loop from running
+
+do {
+    #
+ } while (condition)
+
+do {
+    #
+ } until (condition)
+
+    By default `Get-ChildItem` lists the mode ( Attributes ), LastWriteTime , file size ( Length ), and the Name of the item. The letters in the Mode
+    property can be interpreted as follows:
+
+    - `l` (link)
+
+    - `d` (directory)
+
+    - `a` (archive)
+
+    - `r` (read-only)
+
+    - `h` (hidden)
+
+    - `s` (system).
+
+-ErrorAction Common Parameter:
+    Continue Outputs the error message and continues to execute the
+        cmdlet. This is the default value.
+    Ignore Continues to execute the cmdlet without outputting an error
+        or recording it in the $Error variable.
+    Inquire Outputs the error message and prompts the user for input
+        before continuing.
+    SilentlyContinue Continues to execute the cmdlet without outputting
+        an error, but records it in the $Error variable.
+    Stop Outputs the error message and stops the cmdlet from executing
+
+To change how PowerShell handles all nonterminating
+errors, you can use the $ErrorActionPreference variable, an automatic variable
+that controls the default nonterminating error behavior
+By default, $ErrorActionPreference is set to Continue. Note that the 
+ErrorAction parameter overrides the value of $ErrorActionPreference
+
+# The try/catch/finally statement only catches terminating errors (that is
+# if you have set `-ErrorAction Stop` or `$ErrorActionPreference = Stop`)
+try {
+    # initial code
+} catch {
+    # code that runs if terminating error found
+    # The $_ special variable gives you access to the Error/Exception object
+} finally {
+    # code that runs at the end
+    # Regardless of whether the code in catch runs, the code in finally will always
+    # run.
+}
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Cmdlet          Get-Error                                          7.0.0.0    Microsoft.PowerShell.Utility
+Cmdlet          Write-Error                                        7.0.0.0    Microsoft.PowerShell.Utility
+
+The $Error variable is a built-in variable
+that stores an array of all the errors returned in the current PowerShell
+session, ordered by the time they appear
+The errors in $Error are added to the
+front of the array, so $Error[0] is the most recent, $Error[1] the second most
+recent, and so forth.
+
+By default, parameters are optional. use the `Mandatory` keyword inside the `Parameter` block
+to set it otherwise.
+You can also assign a parameter a default value when the parameter is
+defined: [string] $someParam = 'default val'
+
+To tell PowerShell to execute this function for every object coming in, you
+must include a process block
+
+You can also use begin and end blocks for code that will execute at the beginning
+and end of the function call
+
+Most relevant built-in PS providers:
+    Alias:
+    Env:
+    C: (Filesystem)
+    Function:
+    Variable:
+
+THE JOB CMDLETS
+
+  Cmdlet           Description
+  ---------------- ---------------------------------------------------------
+  Start-Job        Starts a background job on a local computer.
+  Get-Job          Gets the background jobs that were started in the
+                   current session.
+  Receive-Job      Gets the results of background jobs.
+  Stop-Job         Stops a background job.
+  Wait-Job         Suppresses the command prompt until one or all jobs are
+                   complete.
+  Remove-Job       Deletes a background job.
+  Invoke-Command   The AsJob parameter runs any command as a background
+                   job on a remote computer. You can also use
+                   Invoke-Command to run any job command remotely,
+                   including a Start-Job command.
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           gjb -> Get-Job
+Alias           rcjb -> Receive-Job
+Alias           rjb -> Remove-Job
+Alias           sajb -> Start-Job
+Alias           spjb -> Stop-Job
+Alias           wjb -> Wait-Job
+
+Beginning in PowerShell 6.0, you can use an amersand (&) at the end of a
+pipeline to start a background job. The following command is functionally
+equivalent to the command above.
+    $job = Get-Process &
+
+What is System.Management.Automation.SwitchParameter
+
+about_Operators
+about_Splatting
+
+parentheses in pwsh?
+
+For example, to display the elements at index
+positions 0, 2, and 4 through 6, type:
+
+    $a = 0 .. 9
+    $a[0,2+4..6]
+
+Background operator &
+
+Runs the pipeline before it in the background, in a PowerShell job. This
+operator acts similarly to the UNIX control operator ampersand (&), which
+runs the command before it asynchronously in subshell as a job.
+That command is functionally equivalent to the following usage of
+Start-Job:
+    Start-Job -ScriptBlock {Get-Process -Name pwsh}
+Just like Start-Job, the & background operator returns a Job object
+If you want to run multiple commands, each in their own background process
+but all on one line, simply place & between and after each of the commands.
+    Get-Process -Name pwsh & Get-Service -Name BITS & Get-CimInstance -ClassName Win32_ComputerSystem &
+
+Format operator -f
+Formats strings by using the format method of string objects. Enter the
+format string on the left side of the operator and the objects to be
+formatted on the right side of the operator.
+    "{0} {1,-10} {2:N}" -f 1,"hello",[math]::pi
+    1 hello      3.14
+
+Ternary operator ? <if-true> : <if-false>
+Null-coalescing operator ??
+
+Classes are instantiated using either of the following syntaxes:
+    [$<variable-name> =] New-Object -TypeName <class-name> [
+      [-ArgumentList] <constructor-argument-list>]
+    [$<variable-name> =] [<class-name>]::new([<constructor-argument-list>])
+  [!NOTE] When using the [<class-name>]::new() syntax, brackets around the
+  class name are mandatory. The brackets signal a type definition for
+  PowerShell.

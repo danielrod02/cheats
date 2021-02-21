@@ -18,7 +18,9 @@
 # remote
 # fetch
 # push
-# pull
+# pull (REMEMBER, `git pull` Incorporates changes from a remote repository 
+#       INTO THE CURRENT BRANCH, that is, whatever branch is being pointed by HEAD.
+#       You shall not use `pull` to get new branchs from the remote)
 # submodule
 # config
 # show
@@ -168,7 +170,7 @@ git push -d origin remote-branch-name # same as above
 
 
 # to delete remote-tracking branch
-git branch --remote --delete remote-branch-name
+git branch --remotes --delete remote-branch-name
 git branch -r -d remote-branch-name
 
 # there are several ways to set upstream branches:
@@ -183,6 +185,40 @@ git branch --track
 git branch -t 
 # to unset upstreams branches:
 git branch --unset-upstream local-tracking-branch
+
+# DONT USE THE `pull` subcmd to fetch a new branch from a remote
+git pull --set-upstream origin mpa
+git pull --set-upstream origin remote-br:local-br
+######## WARNING WARNING WARNING ########
+######## WARNING WARNING WARNING ########
+#       Remember that `git pull` 'Incorporates changes from a remote repository 
+#       INTO THE CURRENT BRANCH'.
+#       More precisely, `git pull` runs git fetch with the given parameters and 
+#       calls `git merge` to merge the retrieved branch heads into the current branch.
+#       So, IF YOU'RE FETCHING A NEW BRANCH FROM THE REMOTE
+#       AND WANT TO MAKE CHANGES ON TOP OF THAT REMOTE-TRACKING BRANCH YOU HAVE TO CREATE 
+#       A NEW LOCAL BRANCH BASED OFF THE REMOTE-TRACKIN ONE.
+
+# To create new local branches from remote-tracking ones:
+git checkout -b new-local-br-name remote-name/remote-br
+# you can do the same with 
+git checkout --track origin/remote-branch # the new branch will have the same name as the remote branch
+# This operation is so common that there’s even a shortcut for that shortcut. 
+# If the branch name you’re trying to checkout (a) doesn’t exist and (b) exactly 
+# matches a name on only one remote, Git will create a tracking branch for you:
+git checkout remote-branch
+#       CHECKING OUT A LOCAL BRANCH FROM A REMOTE-TRACKING BRANCH (that is, doing this:
+#               `git checkout -b new-local-br-name remote-name/remote-br`
+#       in short, create a new local branch from a remote-traking branch) 
+#       AUTOMATICALLY CREATES WHAT IS CALLED A “TRACKING BRANCH”.
+
+
+# ############### TO DELETE A REMOTE-TRACKING BRANCH ############### The definition of REMOTE-TRACKING BRANCHES is below
+git br --delete --remotes remote-name/branch-name
+git br -d -r remote-name/branch-name # same a above
+# In general:
+#       Use the --remotes flag to act upon remote-tracking branches
+
 ####### BLOCK ######## 
 
 # REMEMBER: An upstream branch is not the same as a remote tracking branch
@@ -204,7 +240,10 @@ git branch --unset-upstream local-tracking-branch
 # checking out (switching branches now on)
 git checkout branch-name
 git switch branch-name
-git checkout -b new-branch # creates a new branche named 'new-branch' from HEAD and checkout to that branch
+git checkout -b new-branch # creates a new branch named 'new-branch' from HEAD and checkout to that branch
+git checkout -b new-branch origin/remote-tr-branch # same as above, but the new branch is based from 
+                        # `origin/remote-tr-branch`. You can use any commit-ish object (tags, branches,
+                        # commits...)
 git sw --create new-branch # same as a above
 git sw -c new-branch # same as above
 
