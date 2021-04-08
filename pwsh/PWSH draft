@@ -540,3 +540,8 @@ Classes are instantiated using either of the following syntaxes:
   [!NOTE] When using the [<class-name>]::new() syntax, brackets around the
   class name are mandatory. The brackets signal a type definition for
   PowerShell.
+
+To create a symbolic link:
+    New-Item -ItemType SymbolicLink `
+        -Path 'C:\Users\OSCAR\exec_bin\cli_utils\run-cors.ps1' `
+        -Target 'C:\Users\OSCAR\repo\cors-everywhere\run-cors.ps1'

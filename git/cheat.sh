@@ -76,7 +76,23 @@ git restore --staged path/to/file/or/glob
 #otherwise from the index. Use --source to restore from a different commit.
 git config --global alias.unadd 'restore --staged' # to "create" the unadd sub command
 
-# VISIT #https://git-scm.com/docs/git#_reset_restore_and_revert to see what are the differences
+# this are the aliases you've created as of 07/04/2021
+#   alias.h=log --oneline --graph --all
+#   alias.hv=log --oneline --graph --all --stat
+#   alias.unadd=restore --staged
+#   alias.st=status -sb
+#   alias.sub=submodule
+#   alias.ch=checkout
+#   alias.gh=!gh
+#   alias.cam=commit -am
+#   alias.branches=branch -vva
+#   alias.br=branch
+#   alias.sw=switch
+#   alias.brs=branch -vva
+#   alias.hstat=log --oneline --graph --all --stat
+#   alias.cherr=cherry-pick
+
+# VISIT https://git-scm.com/docs/git#_reset_restore_and_revert to see what are the differences
 # between restore, reset and revert (which are similar commands). In short:
 #       revert: is about making a new commit that reverts the changes made by other commits
 #       restore: is about restoring files in the working tree from either the index or another commit. This command 
@@ -177,6 +193,8 @@ git branch -r -d remote-branch-name
 ####### BLOCK ######## This block has to be revised
 git push --set-upstream origin local-branch-name
 git push -u origin local-branch-name:upstream-branch-name # when you use push, if the branch didnt exist in the remote then is created
+# refspec in git push command:
+#       https://git-scm.com/docs/git-push#Documentation/git-push.txt-ltrefspecgt82308203
 # 
 git branch --set-upstream-to upstream-branch-name tracking-branch
 git branch -u upstream-branch-name tracking-branch
